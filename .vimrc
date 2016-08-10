@@ -17,7 +17,14 @@ call dein#add('Shougo/dein.vim')
 call dein#add('Shougo/neosnippet.vim')
 call dein#add('Shougo/neosnippet-snippets')
 call dein#add('scrooloose/syntastic')
+
 call dein#add('tpope/vim-fugitive')
+autocmd QuickFixCmdPost *grep* cwindow
+nnoremap <expr> gr ':Ggrep -i ' .  expand('<cword>')
+
+call dein#add('tpope/vim-markdown')
+autocmd BufNewFile,BufReadPost *.md set filetype=markdown
+
 call dein#add('mattn/emmet-vim')
 call dein#add('editorconfig/editorconfig-vim')
 
@@ -38,5 +45,10 @@ endif
 "End dein Scripts-------------------------
 
 set number
+set ignorecase
+set directory=/tmp
+
+let g:netrw_localrmdir='rm -r'
+
 nmap J 10j
 nmap K 10k
