@@ -28,6 +28,16 @@ autocmd BufNewFile,BufReadPost *.md set filetype=markdown
 call dein#add('mattn/emmet-vim')
 call dein#add('editorconfig/editorconfig-vim')
 
+call dein#add('tobyS/pdv')
+let g:pdv_template_dir = $HOME . "/.vim/dein/repos/github.com/tobyS/pdv/templates_snip"
+let g:pdv_cfg_Type = "mixed"
+let g:pdv_cfg_Author = "Ryosuke HAGIHARA <r-hagihara@infiniteloop.co.jp"
+let g:pdv_cfg_Copyright = "Infiniteloop Co., Ltd."
+
+nnoremap <buffer> <C-y> :call pdv#DocumentWithSnip()<CR>
+
+call dein#add('tobyS/vmustache')
+call dein#add('SirVer/ultisnips')
 " You can specify revision/branch/tag.
 call dein#add('Shougo/vimshell', { 'rev': '3787e5' })
 
