@@ -73,6 +73,7 @@ call dein#add('Shougo/unite.vim')
 " autocmd  FileType  php setlocal omnifunc=phpcomplete_extended#CompletePHP
 " let g:phpcomplete_index_composer_command = '/usr/local/bin/composer'
 
+call dein#add('elzr/vim-json')
 
 " You can specify revision/branch/tag.
 call dein#add('Shougo/vimproc.vim', {'build' : 'make'})
@@ -91,3 +92,14 @@ if dein#check_install()
 endif
 
 "End dein Scripts-------------------------
+
+" Jq Command
+command! -nargs=? Jq call s:Jq(<f-args>)
+function! s:Jq(...)
+    if 0 == a:0
+        let l:arg = "."
+    else
+        let l:arg = a:1
+    endif
+    execute "%! jq \"" . l:arg . "\""
+endfunction
