@@ -11,11 +11,11 @@ let php_folding=1
 color koehler
 
 if &compatible
-  set nocompatible               " Be iMproved
+  set nocompatible
 endif
 
 " Required:
-set runtimepath^=$HOME/.vim/dein/repos/github.com/Shougo/dein.vim
+set runtimepath^=$HOME/.config/nvim/dein/repos/github.com/Shougo/dein.vim
 
 " Required:
 call dein#begin(expand('~/.vim/dein'))
@@ -50,11 +50,10 @@ call dein#add('sjl/badwolf')
 call dein#add('tobyS/pdv')
 let g:pdv_template_dir = $HOME . "/.vim/dein/repos/github.com/tobyS/pdv/templates_snip"
 let g:pdv_cfg_Type = "mixed"
-let g:pdv_cfg_Author = "Ryosuke HAGIHARA <r-hagihara@infiniteloop.co.jp"
-let g:pdv_cfg_Copyright = "Infiniteloop Co., Ltd."
 
 nnoremap <buffer> <C-y> :call pdv#DocumentWithSnip()<CR>
 
+call dein#add('SirVer/ultisnips')
 call dein#add('tobyS/vmustache')
 call dein#add('arnaud-lb/vim-php-namespace')
 function! IPhpInsertUse()
@@ -75,6 +74,10 @@ call dein#add('Shougo/unite.vim')
 
 call dein#add('elzr/vim-json')
 
+call dein#add('OmniSharp/omnisharp-vim', { 'build': 'sh -c "cd server/ && xbuild"', 'on_ft': 'cs' })
+call dein#add('https://gitlab.com/mixedCase/deoplete-omnisharp.git', { 'on_ft': 'cs' })
+
+
 " You can specify revision/branch/tag.
 call dein#add('Shougo/vimproc.vim', {'build' : 'make'})
 
@@ -90,6 +93,11 @@ filetype plugin indent on
 if dein#check_install()
   call dein#install()
 endif
+
+if dein#tap("ultisnips")
+    let g:UltiSnipsUsePythonVersion = 3
+endif
+
 
 "End dein Scripts-------------------------
 
