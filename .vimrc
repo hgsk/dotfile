@@ -8,7 +8,7 @@ nmap K 10k
 
 syntax on
 let php_folding=1
-color koehler
+color desert
 
 if &compatible
   set nocompatible
@@ -74,9 +74,14 @@ call dein#add('Shougo/unite.vim')
 
 call dein#add('elzr/vim-json')
 
-call dein#add('OmniSharp/omnisharp-vim', { 'build': 'sh -c "cd server/ && xbuild"', 'on_ft': 'cs' })
+call dein#add('Shougo/deoplete.nvim')
+set runtimepath+=~/.vim/dein/repos/github.com/Shougo/deoplete.nvim/
+
+call dein#add('tpope/vim-dispatch')
+call dein#add('OmniSharp/omnisharp-vim', { 'do': 'sh -c "cd server/ && xbuild"', 'on_ft': 'cs' })
 call dein#add('https://gitlab.com/mixedCase/deoplete-omnisharp.git', { 'on_ft': 'cs' })
 
+let g:deoplete#enable_at_startup = 1
 
 " You can specify revision/branch/tag.
 call dein#add('Shougo/vimproc.vim', {'build' : 'make'})
