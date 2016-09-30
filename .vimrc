@@ -18,7 +18,7 @@ endif
 set runtimepath^=$HOME/.config/nvim/dein/repos/github.com/Shougo/dein.vim
 
 " Required:
-call dein#begin(expand('~/.vim/dein'))
+call dein#begin(expand('~/.config/nvim/dein'))
 
 " Let dein manage dein
 " Required:
@@ -100,7 +100,7 @@ if dein#check_install()
 endif
 
 if dein#tap("ultisnips")
-    let g:UltiSnipsUsePythonVersion = 3
+    let g:UltiSnipsUsePythonVersion = 2
 endif
 
 
