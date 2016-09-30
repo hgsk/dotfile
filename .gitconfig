@@ -1,0 +1,24 @@
+[color]
+    ui = true
+[push]
+    default = current
+[core]
+    excludesfile = ~/.gitignore_global
+    pager = less
+[alias]
+    graph = log --graph -20 --branches --remotes --tags  --format=format:'%Cgreen%h %Creset• %<(75,trunc)%s (%cN, %cr) %Cred%d' --date-order
+    log = log --oneline
+    br = for-each-ref --sort=committerdate refs/ --format='%(HEAD) %(color:yellow)%(refname:short)%(color:reset) - %(color:red)%(objectname:short)%(color:reset) - %(contents:subject) - %(authorname) (%(color:green)%(committerdate:relative)%(color:reset))'
+    start = commit --allow-empty
+    log1 = log --oneline
+    branches = branch -a
+    unstage = reset -q HEAD --
+    amend = commit --amend
+    discard = checkout --
+    uncommit = reset --mixed HEAD~
+    precommit = diff --cached --diff-algorithm=minimal -w
+    unmerged = diff --name-only --diff-filter=U
+    root = rev-parse --show-toplevel
+    pushforce = push --force-with-lease
+[pager]
+    status = true
