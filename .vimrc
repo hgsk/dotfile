@@ -1,6 +1,8 @@
 set number
 set ignorecase
 
+set backupdir=/tmp
+
 let g:netrw_localrmdir='rm -r'
 
 nmap J 10j
@@ -13,6 +15,8 @@ color desert
 if &compatible
   set nocompatible
 endif
+
+tnoremap <silent> <ESC> <C-\><C-n>
 
 " Required:
 set runtimepath^=$HOME/.config/nvim/dein/repos/github.com/Shougo/dein.vim
@@ -34,6 +38,8 @@ smap <C-k>     <Plug>(neosnippet_expand_or_jump)
 xmap <C-k>     <Plug>(neosnippet_expand_target)
 
 call dein#add('scrooloose/syntastic')
+let g:syntastic_php_checkers = ["php", "phpcs", "phpmd"]
+let g:syntastic_php_phpmd_post_args='codesize,design,unusedcode'
 call dein#add('tpope/vim-fugitive')
 autocmd QuickFixCmdPost *grep* cwindow
 nnoremap <expr> gr ':Ggrep -i ' .  expand('<cword>')
@@ -53,7 +59,6 @@ let g:pdv_cfg_Type = "mixed"
 
 nnoremap <buffer> <C-y> :call pdv#DocumentWithSnip()<CR>
 
-call dein#add('SirVer/ultisnips')
 call dein#add('tobyS/vmustache')
 call dein#add('arnaud-lb/vim-php-namespace')
 function! IPhpInsertUse()
@@ -75,13 +80,26 @@ call dein#add('Shougo/unite.vim')
 call dein#add('elzr/vim-json')
 
 call dein#add('Shougo/deoplete.nvim')
+call dein#add('Shougo/context_filetype.vim')
+call dein#add('Shougo/neopairs.vim')
+call dein#add('Shougo/echodoc.vim')
+call dein#add('Shougo/neoinclude.vim')
+call dein#add('Konfekt/FastFold')
 set runtimepath+=~/.vim/dein/repos/github.com/Shougo/deoplete.nvim/
 
 call dein#add('tpope/vim-dispatch')
 call dein#add('OmniSharp/omnisharp-vim', { 'do': 'sh -c "cd server/ && xbuild"', 'on_ft': 'cs' })
 call dein#add('https://gitlab.com/mixedCase/deoplete-omnisharp.git', { 'on_ft': 'cs' })
 
+if !exists('g:deoplete#omni#input_patterns')
+	let g:deoplete#omni#input_patterns = {}
+endif
 let g:deoplete#enable_at_startup = 1
+set completeopt+=noinsert
+
+call dein#add('fntlnz/atags.vim')
+autocmd BufWritePost * call atags#generate()
+
 
 " You can specify revision/branch/tag.
 call dein#add('Shougo/vimproc.vim', {'build' : 'make'})
@@ -98,11 +116,6 @@ filetype plugin indent on
 if dein#check_install()
   call dein#install()
 endif
-
-if dein#tap("ultisnips")
-    let g:UltiSnipsUsePythonVersion = 2
-endif
-
 
 "End dein Scripts-------------------------
 
